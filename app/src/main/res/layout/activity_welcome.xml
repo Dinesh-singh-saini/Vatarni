@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
+    tools:context=".Welcome">
+
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/welcome_animation"
+        android:layout_width="match_parent"
+        android:layout_height="371dp"
+        android:layout_marginBottom="24dp"
+        app:layout_constraintBottom_toTopOf="@+id/app_name"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        app:lottie_rawRes="@raw/welcome"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/app_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:fontFamily="@font/mainfont"
+        android:gravity="center"
+        android:text="@string/app_name"
+        android:textColor="@color/logo"
+        android:textSize="36sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/mainMsg"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="1dp" />
+
+    <TextView
+        android:id="@+id/mainMsg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="28dp"
+        android:fontFamily="@font/mainfont"
+        android:gravity="center"
+        android:text="@string/mainMsg"
+        android:textColor="@color/secondaryColor"
+        android:textSize="32sp"
+        android:textStyle="bold"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintBottom_toTopOf="@+id/descriptionMsg"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/descriptionMsg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="116dp"
+        android:fontFamily="@font/mainfont"
+        android:gravity="center"
+        android:text="@string/description"
+        android:textColor="@color/secondaryColor"
+        android:textSize="16sp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintBottom_toTopOf="@+id/get_started"
+        tools:layout_editor_absoluteX="1dp" />
+
+    <Button
+        android:id="@+id/get_started"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="36dp"
+        app:cornerRadius="12dp"
+        android:backgroundTint="@color/secondaryColor"
+        android:text="@string/get_started"
+        android:textColor="@color/colorPrimary"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>
