@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "897627288588",
+    "project_id": "vatarni-3b83a",
+    "storage_bucket": "vatarni-3b83a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:897627288588:android:a2308e86066f1c958e6a29",
+        "android_client_info": {
+          "package_name": "com.vatarni"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCvf7SR1Xug5u-Gg6DWn53Rl92RGLs6JCE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
