@@ -1,6 +1,7 @@
 package com.vatarni
 
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
@@ -20,14 +21,16 @@ class MainActivity : AppCompatActivity() {
     private lateinit var database: FirebaseDatabase
     private lateinit var binding: ActivityMainBinding
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         auth = FirebaseAuth.getInstance()
         database = FirebaseDatabase.getInstance()
+
         setContentView(binding.root)
 
-        setSupportActionBar(binding.materialToolbar)
+
 
         if (auth.currentUser != null) {
             val userReference = database.reference.child("users").child(auth.uid!!)
@@ -42,7 +45,7 @@ class MainActivity : AppCompatActivity() {
                 }
 
                 override fun onCancelled(error: DatabaseError) {
-//                            Log.e("FirebaseError", databaseError.message)
+                    Toast.makeText(this@MainActivity, "Error: ${error.message}", Toast.LENGTH_SHORT).show()
                 }
             }
             )
@@ -54,22 +57,28 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setupNavigation(savedInstanceState: Bundle?) {
+        loadFragment(Chat())
+
         binding.bottomNav.setOnNavigationItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.Chats -> {
-                    Toast.makeText(this, "Chats Selected", Toast.LENGTH_SHORT).show()
+                    loadFragment(Chat())
+                    binding.title.text = "Chats"
                     true
                 }
                 R.id.status -> {
-                    Toast.makeText(this, "Status Selected", Toast.LENGTH_SHORT).show()
+                loadFragment(StatusFr())
+                    binding.title.text = "Status"
                     true
                 }
                 R.id.calls -> {
+                    binding.title.text = "Calls"
                     Toast.makeText(this, "Calls Selected", Toast.LENGTH_SHORT).show()
                     true
                 }
                 R.id.edit_profile -> {
                     loadFragment(UserProfile())
+                    binding.title.text = "Profile"
                     true
                 }
                 else -> false
@@ -111,16 +120,15 @@ class MainActivity : AppCompatActivity() {
                 true
             }
             R.id.aboutDeveloper -> {
-                Toast.makeText(this, "About Developer Selected", Toast.LENGTH_SHORT).show()
+                openWebPage("https://d-s.netlify.app/")
                 true
             }
             R.id.privacyPolicy -> {
-                Toast.makeText(this, "Privacy Policy Selected", Toast.LENGTH_SHORT).show()
+                openWebPage("https://d-s.netlify.app/privacy_policy/")
                 true
             }
             R.id.logout -> {
                 auth.signOut()
-                Toast.makeText(this, "Logout Selected", Toast.LENGTH_SHORT).show()
                 startActivity(Intent(this@MainActivity, Welcome::class.java))
                 finishAffinity()
                 true
@@ -128,4 +136,10 @@ class MainActivity : AppCompatActivity() {
             else -> super.onOptionsItemSelected(item)
         }
     }
+    private fun openWebPage(url: String) {
+        val webpage: Uri = Uri.parse(url)
+        val intent = Intent(Intent.ACTION_VIEW, webpage)
+        startActivity(intent)
+    }
 }
+

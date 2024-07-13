@@ -6,6 +6,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.view.KeyEvent
 import android.view.View
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
@@ -51,7 +52,7 @@ class OTPVerification : AppCompatActivity() {
         binding.otpMsg.text = "Successfully OTP sent to +91 $phoneNumber"
         binding.otp1.requestFocus()
 
-        findViewById<View>(R.id.verifyOtp).setOnClickListener {
+        binding.verifyOtp.setOnClickListener {
             val otp = getEnteredOtp()
             if (otp.isNotEmpty() && otp.length == 6) {
                 verifyCode(otp)
@@ -83,13 +84,33 @@ class OTPVerification : AppCompatActivity() {
                         } else {
                             binding.verifyOtp.performClick()
                         }
+                    } else if (s?.length == 0 && before == 1) {
+                        if (i > 0) {
+                            otpFields[i].clearFocus()
+                            otpFields[i - 1].requestFocus()
+                            otpFields[i - 1].text?.clear()
+                        }
                     }
                 }
 
                 override fun afterTextChanged(s: Editable?) {}
             })
+
+            otpFields[i].setOnKeyListener { _, keyCode, event ->
+                if (event.action == KeyEvent.ACTION_DOWN && keyCode == KeyEvent.KEYCODE_DEL) {
+                    if (otpFields[i].text.isNullOrEmpty() && i > 0) {
+                        otpFields[i].clearFocus()
+                        otpFields[i - 1].requestFocus()
+                        otpFields[i - 1].text?.clear()
+                    }
+                    true
+                } else {
+                    false
+                }
+            }
         }
     }
+
 
     private fun getEnteredOtp(): String {
         val otp1 = binding.otp1.text.toString().trim()

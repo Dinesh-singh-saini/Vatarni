@@ -46,4 +46,9 @@
     <string name="abut_developer">About Developer</string>
     <string name="privacy_policy">Privacy policy\n</string>
     <string name="tap_to_chat">Tap to chat</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="time">10:10AM</string>
+    <string name="last_updated">Last Updated</string>
+    <string name="delete">Delete</string>
 </resources>
